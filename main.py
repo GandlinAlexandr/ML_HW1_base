@@ -10,8 +10,8 @@ from sklearn.preprocessing import StandardScaler
 
 def transform_data(dataset):
     # Удаление пропусков и невозможных значений
-    dataset['max_power'][dataset['max_power'] == '0'] = np.nan
-    dataset['max_power'][dataset['max_power'] == ' bhp'] = np.nan
+    dataset.loc[dataset['max_power'] == ' bhp', 'max_power'] = np.nan
+    dataset.loc[dataset['max_power'] == '0', 'max_power'] = np.nan
     # Перевод в числовой формат float/int
     dataset['mileage'] = dataset['mileage'].apply(lambda x: (float(x.split(' ')[0]) if x.split(' ')[1] == 'kmpl' else float(x.split(' ')[0])*1.4) # Переводим  km/kg в kmpl
                                                   if type(x)!=float
