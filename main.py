@@ -119,7 +119,7 @@ def predict_item(item: Item) -> float:
     # Предсказания модели
     predicted_price = model.predict(data_cat_encoded_scal.values)
     # Возврат предсказанного значения
-    return float(round(predicted_price[0], 2))
+    return float(round(np.e**predicted_price[0], 0))
 
 
 @app.post("/predict_items")
@@ -145,7 +145,7 @@ def predict_items(items: Items) -> List[float]:
     # Предсказания модели
     predicted_prices = model.predict(data_cat_encoded_scal.values)
     # Возврат списка предсказанных значений
-    return [float(round(price, 2)) for price in predicted_prices]
+    return [float(round(price, 0)) for price in np.e**predicted_prices]
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
