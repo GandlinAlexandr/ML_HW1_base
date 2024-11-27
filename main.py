@@ -24,6 +24,7 @@ def transform_data(dataset):
     dataset['engine'] = dataset['engine'].apply(lambda x: float(x.split(' ')[0]) if type(x)!=float else x)
     dataset['max_power'] = dataset['max_power'].apply(lambda x: float(x.split(' ')[0]) if type(x)!=float else x)
     dataset['engine'] = dataset['engine'].astype(int)
+    dataset['name'] = dataset['name'].apply(lambda x: x.split(' ')[0])
     # Возвращение преобразованного датафрейма
     return dataset
 
